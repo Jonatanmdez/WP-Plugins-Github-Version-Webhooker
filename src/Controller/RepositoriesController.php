@@ -54,16 +54,26 @@ class RepositoriesController extends AppController
         $repository_name=$info_webhook->repository->full_name;
       
         $repository_id=$info_webhook->repository->id;
+      
+        $repository_id=$info_webhook->repository->id;
         $repository=$this->Repositories->findOrCreate(['id'=>$repository_id]);
         $repository->name=$info_webhook->repository->name;
         $repository->description=$info_webhook->repository->description;
         $repository->modified=$info_webhook->repository->updated_at;
         $repository->created=$info_webhook->repository->created_at;
         
+       
+        
+
+        $http = new Client();
+        $last_release=json_decode($http->get('https://api.github.com/repos/'.$repository_name.'/releases/latest')->body);        
+
         $repository->version=$last_release->tag_name;
           
         $repository->url='https://codeload.github.com/'.$repository_name.'/zip/master';
+
         $this->Repositories->Save($repository);
+        die('ok');
         
         
     }

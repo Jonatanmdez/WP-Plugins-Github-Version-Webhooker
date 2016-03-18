@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
+            
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('description') ?></th>
                 <th><?= $this->Paginator->sort('version') ?></th>
@@ -21,7 +21,7 @@
         <tbody>
             <?php foreach ($repositories as $repository): ?>
             <tr>
-                <td><?= $this->Number->format($repository->id) ?></td>
+            
                 <td><?= h($repository->name) ?></td>
                 <td><?= h($repository->description) ?></td>
                 <td><?= h($repository->version) ?></td>
